@@ -339,6 +339,7 @@ video {
   border-radius: 8px;
   display: flex;
   flex-direction: column;
+  align-items: center;
   position: absolute;
   left: 0;
   right: 0;
@@ -358,6 +359,7 @@ video {
 .app__infodialog-content {
   width: 100%;
   padding: 10px;
+  text-align: center;
 }
 
 .app__infodialog-subcontent {
@@ -389,6 +391,10 @@ video {
   font-size: 0px;
   color: #ffffff;
   font-weight: 0;
+}
+
+.app__dialog-title {
+  margin-bottom: 15px; /* Add some space below the title */
 }
 
 .app__dialog-actions {
