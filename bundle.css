@@ -392,10 +392,9 @@ video {
 
 .app__dialog-actions,
 .app__infodialog-actions {
-  display: inline-block;
   position: center;
   bottom: 13px;
-  right: 20px;
+  right: 10px;
 }
 
 .app__infodialog-open,
