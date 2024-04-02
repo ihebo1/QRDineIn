@@ -42,35 +42,56 @@
     <video id="scanner" autoplay></video>
     <div id="target-box"></div>
   </div>
-  <script src="https://cdn.jsdelivr.net/npm/instascan@1.0.1/dist/instascan.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jsqr/dist/jsQR.min.js"></script>
   <script>
     document.addEventListener('DOMContentLoaded', function() {
       const video = document.getElementById('scanner');
       const targetBox = document.getElementById('target-box');
-      
-      const scanner = new Instascan.Scanner({ video: video });
 
-      scanner.addListener('scan', function(content) {
-        // Once a QR code is detected, stop scanning
-        scanner.stop();
+      navigator.mediaDevices.getUserMedia({ video: true })
+        .then(function(stream) {
+          video.srcObject = stream;
+          video.play();
 
-        // Open the link of the QR code
-        window.open(content, '_blank');
+          video.addEventListener('play', function() {
+            const canvas = document.createElement('canvas');
+            const context = canvas.getContext('2d');
+            const width = video.videoWidth;
+            const height = video.videoHeight;
+            canvas.width = width;
+            canvas.height = height;
 
-        // Resume scanning after some time (optional)
-        setTimeout(function() {
-          scanner.start(video);
-        }, 3000);
-      });
+            const tick = function() {
+              if (video.readyState === video.HAVE_ENOUGH_DATA) {
+                context.drawImage(video, 0, 0, width, height);
+                const imageData = context.getImageData(0, 0, width, height);
+                const code = jsQR(imageData.data, imageData.width, imageData.height);
+                if (code) {
+                  // Once a QR code is detected, stop scanning
+                  stream.getTracks().forEach(track => track.stop());
 
-      Instascan.Camera.getCameras()
-        .then(function(cameras) {
-          if (cameras.length > 0) {
-            scanner.start(cameras[0]);
-          } else {
-            console.error('No cameras found.');
-            alert('No cameras found.');
-          }
+                  // Open the link of the QR code
+                  window.open(code.data, '_blank');
+
+                  // Resume scanning after some time (optional)
+                  setTimeout(function() {
+                    navigator.mediaDevices.getUserMedia({ video: true })
+                      .then(function(newStream) {
+                        video.srcObject = newStream;
+                        video.play();
+                      })
+                      .catch(function(error) {
+                        console.error('Error accessing camera:', error);
+                        alert('Error accessing camera. Please ensure that your device supports camera access and you have granted necessary permissions.');
+                      });
+                  }, 3000);
+                }
+              }
+              requestAnimationFrame(tick);
+            };
+
+            tick();
+          });
         })
         .catch(function(error) {
           console.error('Error accessing camera:', error);
