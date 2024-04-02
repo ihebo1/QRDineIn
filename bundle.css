@@ -338,6 +338,7 @@ video {
   height: 210px;
   border-radius: 8px;
   display: flex;
+  flex-direction: column;
   position: absolute;
   left: 0;
   right: 0;
@@ -391,9 +392,9 @@ video {
 }
 
 .app__dialog-actions {
-  position: center;
-  bottom: 13px;
-  right: 20px;
+  margin-top: auto;
+  display: flex;
+  justify-content: center;
 }
 
 .app__infodialog-actions {
