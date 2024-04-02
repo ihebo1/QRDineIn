@@ -1,7 +1,7 @@
 {
-  "short_name": "qrscanner",
-  "name": "qrscanner",
-  "description": "Easily scan a QR code. This is a simple, tiny, and super fast web application that works offline.",
+  "short_name": "QRScanDineIn",
+  "name": "Dine In QR Code Scanner",
+  "description": "Scan your table QR Code",
   "display": "standalone",
   "orientation": "portrait",
   "icons": [
