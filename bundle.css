@@ -388,6 +388,7 @@ video {
   font-size: 15px;
   color: #1b1eb5;
   font-weight: 500;
+  display: hidden;
 }
 
 .app__dialog-actions,
