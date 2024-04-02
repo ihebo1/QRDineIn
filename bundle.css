@@ -399,7 +399,7 @@ video {
 .app__infodialog-actions {
   position: center;
   bottom: 13px;
-  right: 10px;
+  right: 20px;
 }
 
 .app__infodialog-open,
