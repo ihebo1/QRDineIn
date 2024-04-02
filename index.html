@@ -2,15 +2,15 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>QR Scanner</title>
+    <title>QRScanDineIn</title>
     <meta http-equiv=X-UA-Compatible content="IE=edge">
-    <meta name=description content="It is an Online QR Code Scanner from TheDoggyBrad that is easy to use.">
+    <meta name=description content="a QR Code Scanner to login to a restaurant table">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <meta name="mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-title" content="QR Scanner" />
+    <meta name="apple-mobile-web-app-title" content="QR Table Scan" />
     <meta name="apple-mobile-web-app-status-bar-style" content="#e4e4e4">
     <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="application-name" content="QR Scanner" />
+    <meta name="application-name" content="QR Table Scan" />
     <meta name="msapplication-TileColor" content="#e4e4e4" />
     <meta name="msapplication-TileImage" content="images/touch/mstile-150x150.png" />
     <meta name="theme-color" content="#e4e4e4" />
@@ -44,12 +44,12 @@
         <!-- Dialog for result  -->
         <div class="app__dialog app__dialog--hide">
           <div class="app__dialog-content">
-            <h1>The Content of the QR Code</h1>
+            <h1>QR Table Detected, Click "Login Now" to continue</h1>
             <input type="text" id="result">
           </div>
           <div class="app__dialog-actions">
-            <button type="button" class="app__dialog-open">Open</button>
-            <button type="button" class="app__dialog-close">Close</button>
+            <button type="button" class="app__dialog-open">Login Now</button>
+            <button type="button" class="app__dialog-close">Cancel</button>
           </div>
         </div>
 
@@ -58,15 +58,8 @@
         <!-- Info Dialog  -->
         <div class="app__infodialog app__infodialog--hide">
           <div class="app__infodialog-content">
-            <h1>About QR Scanner</h1>
-            <p>Easily scan a QR code. This is a simple, tiny, and super fast web application that works offline.</p>
-            <div class="app__infodialog-subcontent">
-              <p><strong>From:</strong> <a href="https://github.com/thedoggybrad" rel="noreferrer noopener">TheDoggyBrad Software Lab</a></p>
-              <p><strong>Repository:</strong> <a href="https://github.com/thedoggybrad/qrscanner" rel="noreferrer noopener">Github</a></p>
-              <p><strong>License:</strong> <a href="https://github.com/thedoggybrad/qrscanner/blob/main/License" rel="noreferrer noopener">UPDER-FOSDL License</a></p>
-            </div>
-            <span class="app__version">©TheDoggyBrad Software Lab</span>
-          </div>
+            <h1>About our QR Code Scannerr</h1>
+            <p>Scan your table QR Code and Start your order</p>
           <div class="app__infodialog-actions">
             <button type="button" class="app__infodialog-close">Close</button>
           </div>
