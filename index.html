@@ -4,13 +4,79 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>QR Code Scanner</title>
-  <link rel="stylesheet" href="styles.css">
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+    }
+
+    #scanner-container {
+      position: relative;
+      width: 100%;
+      height: 100%;
+    }
+
+    #scanner {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    #target-box {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 200px;
+      height: 200px;
+      border: 2px solid rgba(255, 255, 255, 0.5);
+      box-shadow: 0 0 0 1000px rgba(0, 0, 0, 0.5);
+    }
+  </style>
 </head>
 <body>
   <div id="scanner-container">
     <video id="scanner" autoplay></video>
     <div id="target-box"></div>
   </div>
-  <script src="script.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/instascan@1.0.1/dist/instascan.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const video = document.getElementById('scanner');
+      const targetBox = document.getElementById('target-box');
+      
+      const scanner = new Instascan.Scanner({ video: video });
+
+      scanner.addListener('scan', function(content) {
+        // Once a QR code is detected, stop scanning
+        scanner.stop();
+
+        // Open the link of the QR code
+        window.open(content, '_blank');
+
+        // Resume scanning after some time (optional)
+        setTimeout(function() {
+          scanner.start(video);
+        }, 3000);
+      });
+
+      Instascan.Camera.getCameras()
+        .then(function(cameras) {
+          if (cameras.length > 0) {
+            scanner.start(cameras[0]);
+          } else {
+            console.error('No cameras found.');
+            alert('No cameras found.');
+          }
+        })
+        .catch(function(error) {
+          console.error('Error accessing camera:', error);
+          alert('Error accessing camera. Please ensure that your device supports camera access and you have granted necessary permissions.');
+        });
+    });
+  </script>
 </body>
 </html>
