@@ -390,7 +390,12 @@ video {
   font-weight: 0;
 }
 
-.app__dialog-actions,
+.app__dialog-actions {
+  position: center;
+  bottom: 13px;
+  right: 20px;
+}
+
 .app__infodialog-actions {
   position: center;
   bottom: 13px;
